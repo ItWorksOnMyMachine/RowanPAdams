@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html ng-app="Application" ng-controller="SiteController">
+<head>
+	<style>
+
+
+	</style>
+	<base href="@ViewBag.Base">
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width"/>
+	<title>Rowan's Tasks</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<script>
+		window.apiUrl = '@ViewBag.ApiUrl';
+	</script>
+</head>
+<body style="display: none;" ng-class="{show: models.isBound}">
+<div id="wrap">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" ng-click="navbarProperties.isCollapsed = !navbarProperties.isCollapsed">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" ui-sref="home">Rowan's Tasks</a>
+			</div>
+			<div class="navbar-collapse collapse" collapse="navbarProperties.isCollapsed">
+				<ul class="nav navbar-nav">
+					<li><a ui-sref="log">Log</a></li>
+					<li><a ui-sref="chores">Chores</a></li>
+					<li><a ui-sref="history">History</a></li>
+					@*<li><a ui-sref="stateOne">State One</a></li>
+							<li><a ui-sref="stateTwo({ num: 12 })">State Two</a></li>
+							<li><a ui-sref="stateThree">State Three</a></li>*@
+				</ul>
+				<ul class="nav navbar-nav" ng-if="!loggedIn()">
+					<li><a ui-sref="login">Login</a></li>
+					@*<li><a ui-sref="register">Register</a></li>*@
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="body-content">
+			<br />
+			<div ui-view="mainContainer">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+	<div id="push"></div>
+</div>
+		
+<footer id="footer">
+	<div class="container-fluid">
+		<hr />
+		<p>&copy; @DateTime.Now.Year - Brian P. Adams</p>
+	</div>
+</footer>
+
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-cookies.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+		@Scripts.Render("~/bundles/application")
+		@RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<div ng-controller="HistoryController">
+	<div class="row">
+		<div class="col-xs-3">
+			<strong>Date</strong>
+		</div>
+		<div class="col-xs-6">
+			<strong>Name</strong>
+		</div>
+		<div class="col-xs-3 pull-right">
+			<span class="pull-right"><strong>Value</strong></span>
+		</div>
+	</div>
+
+	<div ng-repeat="grouping in logEntryGroupings">
+		<div class="row" style="padding-top: 15px;">
+			<div class="col-xs-12">
+				<strong>{{grouping.GroupName}}</strong>
+			</div>
+		</div>
+
+		<div class="row" ng-repeat="entry in grouping.LogEntries">
+			<div class="col-xs-3">{{entry.CompletedDate | date:'MM/dd/yyyy'}}</div>
+			<div class="col-xs-6">{{entry.Name}}</div>
+			<div class="col-xs-3"><span class="pull-right">{{entry.Value | currency:'$'}}</span></div>
+		</div>
+
+		<div class="row" style="border-top: 1px solid">
+			<div class="col-xs-3">
+				<strong>Total:</strong>
+			</div>
+			<div class="col-xs-6">
+			</div>
+			<div class="col-xs-3">
+				<span class="pull-right"><strong>{{grouping.GroupTotal | currency:'$'}}</strong></span>
+			</div>
+		</div>
+	</div>
+	<p class="help-block" ng-if="error.message">{{error.message}}</p>
+</div>

@@ -1,0 +1,144 @@
+﻿.mainContent {
+	margin-top: 60px;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	padding-top: 50px;
+	padding-bottom: 1px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+	height: 60px;
+}
+
+#footer {
+	background-color: #f5f5f5;
+}
+
+	#footer p {
+		margin-bottom: 0;
+	}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+/*@@media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+	max-width: 280px;
+}*/
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+/*toggle switch styles*/
+.switch {
+	position: relative;
+	width: 45px;
+}
+
+.switch-checkbox {
+	display: none;
+}
+
+.switch-container {
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid #999999;
+	border-radius: 10px;
+}
+
+.switch-label {
+	display: block;
+	width: 200%;
+	margin-left: -100%;
+	transition: margin 0.3s ease-in 0s;
+}
+
+	.switch-label:before, .switch-label:after {
+		display: block;
+		float: left;
+		width: 50%;
+		height: 15px;
+		padding: 0;
+		line-height: 15px;
+		font-size: 9px;
+		color: white;
+		font-family: Trebuchet, Arial, sans-serif;
+		font-weight: bold;
+		box-sizing: border-box;
+	}
+
+	.switch-label:before {
+		content: "Yes";
+		padding-left: 8px;
+		background-color: #5cb85c;
+		color: #FFFFFF;
+	}
+
+	.switch-label:after {
+		content: "No";
+		padding-right: 8px;
+		background-color: #e6e6e6;
+		color: #333;
+		text-align: right;
+	}
+
+.switch-button {
+	display: block;
+	width: 9px;
+	margin: 3px;
+	background: #FFFFFF;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 26px;
+	border: 2px solid #999999;
+	border-radius: 10px;
+	transition: all 0.3s ease-in 0s;
+}
+
+.switch-checkbox:checked + .switch-container .switch-label {
+	margin-left: 0;
+}
+
+.switch-checkbox:checked + .switch-container .switch-button {
+	right: 0px;
+}

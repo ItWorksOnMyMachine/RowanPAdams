@@ -1,0 +1,36 @@
+﻿@*<form ng-submit="register()">
+	<label for="emailAddress">Email Address:</label>
+	<input id="emailAddress" type="text" ng-model="registerForm.emailAddress" required />
+
+	<label for="password">Password:</label>
+	<input id="password" type="password" ng-model="registerForm.password" required />
+
+	<label for="confirmPassword">Confirm Password:</label>
+	<input id="confirmPassword" type="password" ng-model="registerForm.confirmPassword" required />
+
+	<button type="submit">Register</button>
+</form>*@
+<div ng-controller="RegisterController">
+	<form class="form-horizontal" ng-submit="register()">
+		<div class="form-group">
+			<label for="emailAddress">Email address</label>
+			<input type="email" class="form-control" id="emailAddress" placeholder="Enter email" ng-model="registerForm.username">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" id="password" placeholder="Password" ng-model="registerForm.password">
+		</div>
+		<div class="form-group">
+			<label for="password">Confirm Password</label>
+			<input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" ng-model="registerForm.confirmPassword">
+		</div>
+		<div class="form-group">
+
+			<input ng-disabled="registerForm.buttonDisabled" type="submit" class="btn btn-default" value="Register" />
+		</div>
+		<div class="form-group">
+			<br />
+			<p class="help-block" ng-if="registerForm.errorMessage">{{registerForm.errorMessage}}</p>
+		</div>
+	</form>
+</div>

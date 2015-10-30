@@ -1,0 +1,52 @@
+﻿<div ng-controller="ChoresController">
+	<form class="form-horizontal">
+		<div class="row form-group-sm" ng-if="!newChoreVisible">
+			<div class="col-xs-12">
+				<a href="#" class="btn btn-primary btn-sm" ng-click="showNewChore();">
+					<span><span class="glyphicon glyphicon-plus-sign"></span> New Chore</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="row" ng-if="newChoreVisible">
+			<div class="col-xs-6 form-group-sm" ng-class="newChore.HasNameError ? 'has-error' : ''">
+				<input type="text" class="form-control" ng-model="newChore.Name" placeholder="Chore Name" autocomplete="off" />
+			</div>
+			<div class="col-xs-3 form-group-sm" ng-class="newChore.HasValueError ? 'has-error' : ''">
+				<input type="text" class="form-control" ng-model="newChore.Value" placeholder="Chore Value" autocomplete="off" valid-number />
+			</div>
+			<div class="col-xs-3 form-group-sm">
+				<div class="btn-group-sm">
+					<a class="btn btn-primary" href="#" ng-click="createChore();">Create</a>
+					<a class="btn btn-primary" href="#" ng-click="hideNewChore();">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br/>
+
+	<div class="row">
+		<div class="col-xs-6"><strong>Name</strong>
+		</div>
+		<div class="col-xs-3"><strong>Value</strong>
+		</div>
+		<div class="col-xs-3"><strong>Active</strong>
+		</div>
+	</div>
+
+	<div class="row" ng-repeat="chore in chores">
+		<div class="col-xs-6">{{chore.Name}}</div>
+		<div class="col-xs-3">{{chore.Value | currency:"$"}}</div>
+		<div class="col-xs-3">
+			<div class="switch">
+				<input type="checkbox" class="switch-checkbox" ng-model="chore.Active">
+				<label class="switch-container" ng-click="activateDeactivate(chore);">
+					<span class="switch-label"></span>
+					<span class="switch-button"></span>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<p class="help-block" ng-if="error.message">{{error.message}}</p>
+</div>
