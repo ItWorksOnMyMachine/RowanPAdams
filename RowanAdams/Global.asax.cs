@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -20,20 +21,29 @@ namespace RowanAdams
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 		}
 
-		protected void Application_BeginRequest()
-		{
-			var newUrl = String.Empty;
-			var currUrl = Context.Request.Url;
-
-			//if (newUrl != String.Empty)
-			//	Response.Redirect(newUrl);
-		}
-
 		protected void Application_PreSendRequestHeaders()
 		{
 			Response.Headers.Remove("Server");
 			Response.Headers.Remove("X-AspNet-Version");
 			Response.Headers.Remove("X-AspNetMvc-Version");
+		}
+
+		protected void Application_BeginRequest()
+		{
+			var newUrl = String.Empty;
+
+			if (ConfigurationManager.AppSettings["requireSubdomain"] == "true")
+			{
+				var validSubdomains = ConfigurationManager.AppSettings["validSubdomains"].Split(new[] { ',' });
+				var firstDot = Context.Request.Url.Host.IndexOf('.');
+				var subDomain = Context.Request.Url.Host.Substring(0, firstDot);
+
+				if (validSubdomains.All(sd => String.Compare(sd, subDomain, StringComparison.InvariantCultureIgnoreCase) != 0))
+					newUrl = Context.Request.Url.ToString().Replace("://" + Context.Request.Url.Host, $"://{ConfigurationManager.AppSettings["preferredSubdomain"]}.{Context.Request.Url.Host}");
+			}
+
+			if (newUrl != String.Empty)
+				Response.Redirect(newUrl);
 		}
 	}
 }

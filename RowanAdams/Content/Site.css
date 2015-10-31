@@ -142,3 +142,7 @@ textarea {
 .switch-checkbox:checked + .switch-container .switch-button {
 	right: 0px;
 }
+
+.form-inline .form-control {
+	width: 100%;
+}

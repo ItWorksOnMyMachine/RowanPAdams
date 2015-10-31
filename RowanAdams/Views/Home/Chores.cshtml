@@ -1,5 +1,5 @@
 ﻿<div ng-controller="ChoresController">
-	<form class="form-horizontal">
+	<form class="form-inline">
 		<div class="row form-group-sm" ng-if="!newChoreVisible">
 			<div class="col-xs-12">
 				<a href="#" class="btn btn-primary btn-sm" ng-click="showNewChore();">
@@ -9,14 +9,14 @@
 		</div>
 
 		<div class="row" ng-if="newChoreVisible">
-			<div class="col-xs-6 form-group-sm" ng-class="newChore.HasNameError ? 'has-error' : ''">
+			<div class="col-xs-12 col-sm-6 form-group form-group-sm" ng-class="newChore.HasNameError ? 'has-error' : ''">
 				<input type="text" class="form-control" ng-model="newChore.Name" placeholder="Chore Name" autocomplete="off" />
 			</div>
-			<div class="col-xs-3 form-group-sm" ng-class="newChore.HasValueError ? 'has-error' : ''">
+			<div class="col-xs-12 col-sm-3 form-group form-group-sm" ng-class="newChore.HasValueError ? 'has-error' : ''">
 				<input type="text" class="form-control" ng-model="newChore.Value" placeholder="Chore Value" autocomplete="off" valid-number />
 			</div>
-			<div class="col-xs-3 form-group-sm">
-				<div class="btn-group-sm">
+			<div class="col-xs-12 col-sm-3 form-group form-group-sm">
+				<div class="btn-group-sm pull-right">
 					<a class="btn btn-primary" href="#" ng-click="createChore();">Create</a>
 					<a class="btn btn-primary" href="#" ng-click="hideNewChore();">Cancel</a>
 				</div>
