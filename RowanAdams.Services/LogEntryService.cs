@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Repository.Pattern.Repositories;
 using RowanAdams.Entities.Models;
 using Service.Pattern;
+using RowanAdams.Queries;
 
 namespace RowanAdams.Services
 {
@@ -43,6 +44,9 @@ namespace RowanAdams.Services
 
 		public async Task<IEnumerable<LogEntry>> GetLogEntriesDuringMonthYear(int month, int year)
 		{
+            // If we wanted data in a different shape we could also do something like this...
+            //return await _repository.GetLogEntriesWithChores().ToListAsync();
+
 			var startDate = new DateTime(year, month, 1);
 			var endDate = startDate.AddMonths(1);
 			return await this.Query(x => x.CompletedDate >= startDate && x.CompletedDate < endDate)
